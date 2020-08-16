@@ -1,13 +1,238 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  height: 100%;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-width: 350px;
+  width: 100%;
+  min-height: 600px;
+  height: 100%;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  background-color: #121212;
+}
+.btn {
+  background-color: transparent;
+  border: 1px solid #5dcbff;
+  width: 3em;
+  height: 3em;
+  cursor: pointer;
+}
+.btn:focus {
+  outline: 0;
+}
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+}
+.ripple-primary:hover {
+  background: #5dcbff radial-gradient(circle, transparent 1%, #5dcbff 1%)
+    center/15000%;
+}
+.ripple-secondary:hover {
+  background: #ff7597 radial-gradient(circle, transparent 1%, #ff7597 1%)
+    center/15000%;
+}
+.ripple-primary:active {
+  background-color: #2992db;
+}
+.ripple-secondary:active {
+  background-color: #d43c63;
+}
+.ripple:active {
+  background-size: 100%;
+  transition: background 0s;
+}
+.fas {
+  color: white;
+  font-size: 1.5em;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 750px;
+  box-sizing: border-box;
+}
+.head-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.head-label {
+  text-align: center;
+  padding: 0.5em 0;
+  font-size: 1.25em;
+  font-weight: 300;
+}
+.decrement,
+.increment {
+  border-radius: 50%;
+}
+.length {
+  text-align: center;
+  width: 1em;
+  font-size: 1.25em;
+  font-weight: 600;
+  padding: 0 1em;
+}
+.timer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.timer-outer-circle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 315px;
+  height: 315px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-sizing: border-box;
+  color: #5dcbff;
+}
+.timer-circle {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+.progress {
+  transform: rotate(-90deg);
+}
+.progress__value {
+  stroke-dasharray: 917.345;
+  stroke-dashoffset: 917.345;
+  stroke-linecap: round;
+}
+@keyframes progress {
+  from {
+    stroke-dashoffset: 917.345;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.timer-label {
+  text-align: center;
+  font-size: 1.75em;
+  font-weight: 300;
+  color: white;
+}
+.time-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0;
+  font-size: 5em;
+}
+.timer-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  margin-top: 0.25em;
+}
+.timer-icon i {
+  color: white;
+}
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 750px;
+  box-sizing: border-box;
+}
+.footer-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 1.5em;
+}
+.btn-control {
+  margin: 0 1em;
+  border-radius: 25%;
+  border: 1px solid #ff7597;
+}
+.mute_unmute {
+  border-radius: 50%;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.footer-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.task-input {
+  width: 200px;
+  height: 2em;
+  box-sizing: border-box;
+  font-size: 1.25em;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  padding: 0 0.5em;
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  border-bottom: 1px solid white;
+}
+.task-input:focus {
+  outline: none;
+}
+.add-task {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  padding: 0;
+  margin-left: 1em;
+  width: 75px;
+  height: 3em;
+  color: rgba(255, 255, 255, 0.87);
+}
+.task-output {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 2em;
+  margin: 0;
+  padding: 1em;
+  box-sizing: border-box;
+  font-weight: 400;
+  color: #5dcbff;
+}
+.max-chars {
+  color: #cf6679;
+  font-size: 1em;
+  margin-right: 0.5em;
 }
