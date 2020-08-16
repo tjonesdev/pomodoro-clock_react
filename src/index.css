@@ -24,7 +24,7 @@ body,
 }
 .btn {
   background-color: transparent;
-  border: 1px solid #5dcbff;
+  border: 2px solid #5dcbff;
   width: 3em;
   height: 3em;
   cursor: pointer;
@@ -103,7 +103,7 @@ body,
   width: 315px;
   height: 315px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 6px solid white;
   box-sizing: border-box;
   color: #5dcbff;
 }
@@ -176,7 +176,7 @@ body,
 .btn-control {
   margin: 0 1em;
   border-radius: 25%;
-  border: 1px solid #ff7597;
+  border: 2px solid #ff7597;
 }
 .mute_unmute {
   border-radius: 50%;
@@ -205,7 +205,7 @@ body,
   background-color: transparent;
   border: none;
   outline: 0;
-  border-bottom: 1px solid white;
+  border-bottom: 2px solid white;
 }
 .task-input:focus {
   outline: none;
