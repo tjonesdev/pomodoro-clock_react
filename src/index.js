@@ -1,118 +1,111 @@
-import './index.css';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import "./index.css";
+import React from "react";
+import ReactDOM from "react-dom";
 
-const Increment = (props) => {
+const Increment = props => {
   return (
     <button
-      className="session-increment btn increment ripple ripple-primary"
+      className='session-increment btn increment ripple ripple-primary'
       onClick={props.handleIncrement}
-      id={props.id}
-    >
-      <i className=" fas fa-plus"></i>
+      id={props.id}>
+      <i className=' fas fa-plus'></i>
     </button>
   );
 };
-const Decrement = (props) => {
+const Decrement = props => {
   return (
     <button
-      className="session-decrement btn decrement ripple ripple-primary"
+      className='session-decrement btn decrement ripple ripple-primary'
       onClick={props.handleDecrement}
-      id={props.id}
-    >
-      <i className="fas fa-minus"></i>
+      id={props.id}>
+      <i className='fas fa-minus'></i>
     </button>
   );
 };
 
-const Session = (props) => {
+const Session = props => {
   return (
-    <div className="session-container head-container">
-      <div className="session-label head-label">Session Time</div>
-      <div className="session-controls head-controls">
+    <div className='session-container head-container'>
+      <div className='session-label head-label'>Session Time</div>
+      <div className='session-controls head-controls'>
         {props.decrement}
-        <div className="session-length length">{sessionTemp}</div>
+        <div className='session-length length'>{sessionTemp}</div>
         {props.increment}
       </div>
     </div>
   );
 };
 
-const Break = (props) => {
+const Break = props => {
   return (
-    <div className="break-container  head-container">
-      <div className="break-label head-label">Break Time</div>
-      <div className="break-controls head-controls">
+    <div className='break-container  head-container'>
+      <div className='break-label head-label'>Break Time</div>
+      <div className='break-controls head-controls'>
         {props.decrement}
-        <div className="break-length length">{breakTemp}</div>
+        <div className='break-length length'>{breakTemp}</div>
         {props.increment}
       </div>
     </div>
   );
 };
 
-const Timer = (props) => {
+const Timer = props => {
   let label = "",
     icon;
   switch (props.timerState) {
     case "init":
       label = "Ready?";
-      icon = <i class="fas fa-flag-checkered"></i>;
+      icon = <i class='fas fa-flag-checkered'></i>;
       break;
     case "session":
       label = "Get to work!";
-      icon = <i class="fas fa-running"></i>;
+      icon = <i class='fas fa-running'></i>;
       break;
     case "break":
       label = "Take a break";
-      icon = <i class="fas fa-coffee"></i>;
+      icon = <i class='fas fa-coffee'></i>;
       break;
     case "paused":
       label = "Paused";
-      icon = <i class="fas fa-pause"></i>;
+      icon = <i class='fas fa-pause'></i>;
       break;
     case "complete":
       label = "Complete!";
-      icon = <i class="fas fa-glass-cheers"></i>;
+      icon = <i class='fas fa-glass-cheers'></i>;
       break;
     default:
       label = "Ready?";
-      icon = <i class="fas fa-flag-checkered"></i>;
+      icon = <i class='fas fa-flag-checkered'></i>;
   }
-
-  let duration =
-    props.whichTimer === "session" ? props.session * 60 : props.break * 60;
 
   return (
     <div
-      className="timer-outer-circle"
-      style={{ color: props.whichTimer === "session" ? "#5dcbff" : "#ff7597" }}
-    >
+      className='timer-outer-circle'
+      style={{color: props.whichTimer === "session" ? "#5dcbff" : "#ff7597"}}>
       <svg
-        id="timer-circle"
-        className="timer-circle progress"
-        viewBox="0 0 300 300"
-      >
+        id='timer-circle'
+        className='timer-circle progress'
+        viewBox='0 0 300 300'>
         <circle
-          cx="150"
-          cy="150"
-          r="146"
-          fill="none"
-          stroke="transparent"
-          stroke-width="8"
+          cx='150'
+          cy='150'
+          r='146'
+          fill='none'
+          stroke='transparent'
+          stroke-width='8'
         />
         {props.restartAnimation ? (
           <div></div>
         ) : (
           <circle
-            id="progress-bar"
-            className="progress__value"
-            cx="150"
-            cy="150"
-            r="146"
-            fill="none"
+            id='progress-bar'
+            className='progress__value'
+            cx='150'
+            cy='150'
+            r='146'
+            fill='none'
             stroke={props.whichTimer === "session" ? "#5dcbff" : "#ff7597"}
-            stroke-width="8"
+            stroke-width='8'
             style={{
               animation: props.restartAnimation
                 ? ""
@@ -122,88 +115,82 @@ const Timer = (props) => {
           />
         )}
       </svg>
-      <div className="timer-label label">
+      <div className='timer-label label'>
         {props.taskSubmit !== "" && props.timerState === "session"
           ? props.taskSubmit
           : label}
       </div>
-      <div className="time-left" style={{ color: props.blink }}>
+      <div className='time-left' style={{color: props.blink}}>
         {props.minutes < 10 ? "0" + props.minutes : props.minutes}:
         {props.seconds < 10 ? "0" + props.seconds : props.seconds}
       </div>
-      <div className="timer-icon">{icon}</div>
+      <div className='timer-icon'>{icon}</div>
     </div>
   );
 };
 
-const Controls = (props) => {
+const Controls = props => {
   let playIcon, muteIcon;
   !props.init || props.isPaused || props.timerState === "complete"
-    ? (playIcon = <i className="fas fa-play"></i>)
-    : (playIcon = <i class="fas fa-pause"></i>);
+    ? (playIcon = <i className='fas fa-play'></i>)
+    : (playIcon = <i class='fas fa-pause'></i>);
 
   !props.isMuted
-    ? (muteIcon = <i className="fas fa-volume-up"></i>)
-    : (muteIcon = <i class="fas fa-volume-mute"></i>);
+    ? (muteIcon = <i className='fas fa-volume-up'></i>)
+    : (muteIcon = <i class='fas fa-volume-mute'></i>);
 
   return (
-    <div className="footer-controls">
+    <div className='footer-controls'>
       <button
-        className="start_stop btn btn-control ripple ripple-secondary"
-        onClick={props.handleTimerState}
-      >
+        className='start_stop btn btn-control ripple ripple-secondary'
+        onClick={props.handleTimerState}>
         {playIcon}
       </button>
       <button
-        className="mute_unmute btn btn-control ripple ripple-secondary"
-        onClick={props.handleMute}
-      >
+        className='mute_unmute btn btn-control ripple ripple-secondary'
+        onClick={props.handleMute}>
         {muteIcon}
       </button>
       <button
-        className="reset btn btn-control ripple ripple-secondary"
-        onClick={props.handleReset}
-      >
-        <i className="fas fa-undo-alt"></i>
+        className='reset btn btn-control ripple ripple-secondary'
+        onClick={props.handleReset}>
+        <i className='fas fa-undo-alt'></i>
       </button>
     </div>
   );
 };
 
-const AddTask = (props) => {
+const AddTask = props => {
   return (
-    <div className="input-container">
+    <div className='input-container'>
       <form
-        className="footer-form"
-        action="javascript:void(0);"
-        method="post"
-        onSubmit={props.handleSubmit}
-      >
+        className='footer-form'
+        action='javascript:void(0);'
+        method='post'
+        onSubmit={props.handleSubmit}>
         <input
-          tabIndex="0"
-          id="task-input"
-          className="task-input"
-          type="text"
-          maxLength="30"
+          tabIndex='0'
+          id='task-input'
+          className='task-input'
+          type='text'
+          maxLength='30'
           onChange={props.handleChange}
           value={props.taskInput}
-          placeholder="Add task here..."
-          style={{ border: props.isMaxLength ? "2px solid #cf6679" : "" }}
+          placeholder='Add task here...'
+          style={{border: props.isMaxLength ? "2px solid #cf6679" : ""}}
         />
         <button
-          id="add-task"
-          className="add-task btn ripple ripple-primary"
-          type="submit"
-        >
+          id='add-task'
+          className='add-task btn ripple ripple-primary'
+          type='submit'>
           Add Task
         </button>
       </form>
       <p
-        className="task-output"
-        style={{ color: props.isMaxLength ? "#cf6679" : "" }}
-      >
+        className='task-output'
+        style={{color: props.isMaxLength ? "#cf6679" : ""}}>
         {props.isMaxLength ? (
-          <i className="max-chars fas fa-exclamation-circle"></i>
+          <i className='max-chars fas fa-exclamation-circle'></i>
         ) : props.taskSubmit !== "" ? (
           "TASK: " + props.taskSubmit
         ) : (
@@ -214,14 +201,14 @@ const AddTask = (props) => {
   );
 };
 let beep;
-const Audio = (props) => {
-  beep = document.getElementById('beep');
+const Audio = props => {
+  beep = document.getElementById("beep");
   return (
     <audio
-      id="beep"
-      preload="auto"
+      id='beep'
+      preload='auto'
       muted={props.isMuted}
-      src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav"
+      src='https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav'
     />
   );
 };
@@ -334,6 +321,7 @@ class Pomodoro extends React.Component {
   }
 
   handleChange(e) {
+    e.preventDefault();
     if (this.state.timerState === "complete") {
       this.handleReset();
     }
@@ -527,8 +515,8 @@ class Pomodoro extends React.Component {
 
   blinkTimer() {
     this.state.blink === "inherit"
-      ? this.setState({ blink: "transparent" })
-      : this.setState({ blink: "inherit" });
+      ? this.setState({blink: "transparent"})
+      : this.setState({blink: "inherit"});
   }
 
   handleTimerState() {
@@ -662,19 +650,19 @@ class Pomodoro extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="header-container">
+      <div className='container'>
+        <div className='header-container'>
           <Session
             increment={
               <Increment
                 handleIncrement={this.handleIncrement}
-                id="session-inc"
+                id='session-inc'
               />
             }
             decrement={
               <Decrement
                 handleDecrement={this.handleDecrement}
-                id="session-dec"
+                id='session-dec'
               />
             }
             session={this.state.session}
@@ -683,19 +671,19 @@ class Pomodoro extends React.Component {
             increment={
               <Increment
                 handleIncrement={this.handleIncrement}
-                id="break-inc"
+                id='break-inc'
               />
             }
             decrement={
               <Decrement
                 handleDecrement={this.handleDecrement}
-                id="break-dec"
+                id='break-dec'
               />
             }
             break={this.state.break}
           />
         </div>
-        <div className="timer-container">
+        <div className='timer-container'>
           <Timer
             session={this.state.session}
             break={this.state.break}
@@ -714,7 +702,7 @@ class Pomodoro extends React.Component {
             taskSubmit={this.state.taskSubmit}
           />
         </div>
-        <div className="footer-container">
+        <div className='footer-container'>
           <Controls
             handleTimerState={this.handleTimerState}
             handleMute={this.handleMute}
