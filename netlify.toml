@@ -1,0 +1,9 @@
+[build]
+publish = "build/"
+command = "CI='' npm run build"
+
+[[redirects]]
+from = "https://tjonesdev-pomodoro.netlify.app"
+to = "https://pomodoro.tjonesdev.com"
+status = 301
+force = true
