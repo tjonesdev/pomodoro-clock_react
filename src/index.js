@@ -1,3 +1,4 @@
+/* eslint-disable no-script-url */
 import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
